@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Power BI Report Embed Example</title>
+  <script src="https://cdn.jsdelivr.net/npm/powerbi-client@2.23.1/dist/powerbi.min.js"></script>
+  <style>
+    body {
+      background: #f7fafc;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+    #reportContainer {
+      width: 900px;
+      height: 600px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.09);
+      background: #fff;
+    }
+    h1 { font-size: 2em; margin-bottom: 24px; }
+  </style>
+</head>
+<body>
+  <h1>Embedded Power BI Report</h1>
+  <div id="reportContainer"></div>
+
+  <script>
+    // Your Power BI embed link here (for "publish to web" or public report)
+    const embedUrl = "https://app.powerbi.com/reportEmbed?reportId=933d29a7-4089-4507-9d31-57836aac3fd5&groupId=5a3ae0d1-bafa-41c4-9956-4c23ff361f0a&w=2&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLU5PUlRILUVVUk9QRS1MLVBSSU1BUlktcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQiLCJlbWJlZEZlYXR1cmVzIjp7InVzYWdlTWV0cmljc1ZOZXh0Ijp0cnVlfX0%3d";
+
+    // Basic embed configuration for public reports (no authentication)
+    const embedConfig = {
+      type: "report",
+      embedUrl: embedUrl,
+      accessToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Il9qTndqZVNudlRUSzhYRWRyNVFVUGtCUkxMbyIsImtpZCI6Il9qTndqZVNudlRUSzhYRWRyNVFVUGtCUkxMbyJ9.eyJhdWQiOiJodHRwczovL2FuYWx5c2lzLndpbmRvd3MubmV0L3Bvd2VyYmkvYXBpIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvMGFlNTFlMTktMDdjOC00ZTRiLWJiNmQtNjQ4ZWU1ODQxMGY0LyIsImlhdCI6MTc1MTI0NzAyNSwibmJmIjoxNzUxMjQ3MDI1LCJleHAiOjE3NTEyNTA5MjUsImFpbyI6ImsyUmdZTkJYVUcxLzZ2eVQ5VVhMMmhSMm42WnpBQT09IiwiYXBwaWQiOiJhYjQ1Nzg5NS0xYzJhLTRmMDUtYTVhZS1jMTYzN2IyYzYzYjYiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8wYWU1MWUxOS0wN2M4LTRlNGItYmI2ZC02NDhlZTU4NDEwZjQvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiI4NTZmZjA2Yi1jMDA3LTQ1YzQtOTAyYi00YjFhNWRiOTFlMDMiLCJyaCI6IjEuQVNFQUdSN2xDc2dIUzA2N2JXU081WVFROUFrQUFBQUFBQUFBd0FBQUFBQUFBQUFoQUFBaEFBLiIsInN1YiI6Ijg1NmZmMDZiLWMwMDctNDVjNC05MDJiLTRiMWE1ZGI5MWUwMyIsInRpZCI6IjBhZTUxZTE5LTA3YzgtNGU0Yi1iYjZkLTY0OGVlNTg0MTBmNCIsInV0aSI6IjJRVFktTFhhdFVXc0Z2bFRwems3QUEiLCJ2ZXIiOiIxLjAiLCJ4bXNfZnRkIjoiZ3BaZ2J2ZktHUjd6YVl6MGJnbHhFM2hESEc3WnZMRVowaUR3d1pzUmpTY0JaWFZ5YjNCbGQyVnpkQzFrYzIxeiIsInhtc19pZHJlbCI6IjcgNCIsInhtc19yZCI6IjAuNDJMbFlCSmlWQlFTNFdBWEVwZ1l0NzE1YmxlLXo5YjBQOTJGQ2s0dVFGRk9JWUc5NmRLTndXbXRYcTJaaGVjakpuSmtBVVU1aEFRNEdTRGdBSlFHQUEifQ.B8aDvJk1M2D8ENMYJnUjqSv5mO4G5kdyoLLkpxxDVzqOYpWFf9N6d6m57YKwumSlx-xVJYgzlbSedDKLMm6idMKUJkNvXMpk_oCKWJ-su2PyzuoOj1KFzikW-ry9njpPR82LRSxU5RLGvt5FferPccsID2SH948eNkdWD0dh6GQ8AjpaFGbQ6fnsN4VZgrBpXZk_slgDwW3TUZk8g5AsCoGV2QCQ9PrGoTyw9fi81jkhi5CM-iYHUQtY1i7TMBETHqTe23CA-sbz16eNeWwu_6dXv0rS3tcrXrsWbAle8e4VY-msXJ1TJ6_b7uNBuOYMjn3fKVWe8xBw9eLSDOY7RA",
+      tokenType: window['powerbi-client'].models.TokenType.Embed,
+      settings: {
+        filterPaneEnabled: true,
+        navContentPaneEnabled: true
+      }
+    };
+
+    // Grab the container div
+    const reportContainer = document.getElementById('reportContainer');
+
+    // Embed the report
+    powerbi.embed(reportContainer, embedConfig);
+  </script>
+</body>
+</html>
